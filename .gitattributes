@@ -1,2 +1,188 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+class Vehicle:
+    """
+    Represents a generic vehicle with common attributes and behaviors.
+    """
+    def __init__(self, make, model, year, color, engine_type, is_running=False):
+        """
+        Constructor to initialize a Vehicle object.
+
+        Args:
+            make (str): The manufacturer of the vehicle.
+            model (str): The specific model of the vehicle.
+            year (int): The manufacturing year of the vehicle.
+            color (str): The color of the vehicle.
+            engine_type (str): The type of engine (e.g., petrol, diesel, electric).
+            is_running (bool, optional): Indicates if the vehicle's engine is running. Defaults to False.
+        """
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.engine_type = engine_type
+        self.is_running = is_running
+
+    def start_engine(self):
+        """Starts the vehicle's engine."""
+        if not self.is_running:
+            print(f"The {self.make} {self.model}'s engine is starting...")
+            self.is_running = True
+        else:
+            print(f"The {self.make} {self.model}'s engine is already running.")
+
+    def stop_engine(self):
+        """Stops the vehicle's engine."""
+        if self.is_running:
+            print(f"The {self.make} {self.model}'s engine is stopping...")
+            self.is_running = False
+        else:
+            print(f"The {self.make} {self.model}'s engine is already stopped.")
+
+    def display_info(self):
+        """Displays the basic information of the vehicle."""
+        print("--- Vehicle Information ---")
+        print(f"Make: {self.make}")
+        print(f"Model: {self.model}")
+        print(f"Year: {self.year}")
+        print(f"Color: {self.color}")
+        print(f"Engine Type: {self.engine_type}")
+        print(f"Status: {'Running' if self.is_running else 'Stopped'}")
+        print("-------------------------")
+
+class Car(Vehicle):
+    """
+    Represents a car, inheriting from the Vehicle class.
+    """
+    def __init__(self, make, model, year, color, engine_type, num_doors, is_running=False):
+        """
+        Constructor for Car, inheriting from Vehicle.
+
+        Args:
+            make (str): The manufacturer of the car.
+            model (str): The specific model of the car.
+            year (int): The manufacturing year of the car.
+            color (str): The color of the car.
+            engine_type (str): The type of engine (e.g., petrol, diesel, electric).
+            num_doors (int): The number of doors the car has.
+            is_running (bool, optional): Indicates if the car's engine is running. Defaults to False.
+        """
+        super().__init__(make, model, year, color, engine_type, is_running)
+        self.num_doors = num_doors
+
+    def drive(self):
+        """Simulates driving the car."""
+        if self.is_running:
+            print(f"The {self.color} {self.make} {self.model} with {self.num_doors} doors is driving.")
+        else:
+            print(f"Cannot drive. The engine of the {self.make} {self.model} is not running.")
+
+    def display_info(self):
+        """Overrides the display_info method to include car-specific information."""
+        super().display_info()
+        print("--- Car Specific Info ---")
+        print(f"Number of Doors: {self.num_doors}")
+        print("-----------------------")
+
+class Motorcycle(Vehicle):
+    """
+    Represents a motorcycle, inheriting from the Vehicle class.
+    """
+    def __init__(self, make, model, year, color, engine_type, has_windshield, is_running=False):
+        """
+        Constructor for Motorcycle, inheriting from Vehicle.
+
+        Args:
+            make (str): The manufacturer of the motorcycle.
+            model (str): The specific model of the motorcycle.
+            year (int): The manufacturing year of the motorcycle.
+            color (str): The color of the motorcycle.
+            engine_type (str): The type of engine (e.g., petrol, electric).
+            has_windshield (bool): Indicates if the motorcycle has a windshield.
+            is_running (bool, optional): Indicates if the motorcycle's engine is running. Defaults to False.
+        """
+        super().__init__(make, model, year, color, engine_type, is_running)
+        self.has_windshield = has_windshield
+
+    def ride(self):
+        """Simulates riding the motorcycle."""
+        if self.is_running:
+            windshield_status = "with a windshield" if self.has_windshield else "without a windshield"
+            print(f"The {self.color} {self.make} {self.model} {windshield_status} is being ridden.")
+        else:
+            print(f"Cannot ride. The engine of the {self.make} {self.model} is not running.")
+
+    def display_info(self):
+        """Overrides the display_info method to include motorcycle-specific information."""
+        super().display_info()
+        print("--- Motorcycle Specific Info ---")
+        print(f"Has Windshield: {'Yes' if self.has_windshield else 'No'}")
+        print("----------------------------")
+
+generic_vehicle = Vehicle("Generic Motors", "Base Model", 2020, "Grey", "Gasoline")
+my_car = Car("Mercedes", "C-Class", 2020, "Black", "Petrol", 4)
+my_motorcycle = Motorcycle("Yamaha", "YZF-R1", 2021, "Blue", "Petrol", False)
+
+generic_vehicle.display_info()
+my_car.display_info()
+my_car.start_engine()
+my_car.drive()
+my_car.stop_engine()
+my_motorcycle.display_info()
+my_motorcycle.start_engine()
+my_motorcycle.ride()
+my_motorcycle.stop_engine()
+
+    POLYMORPHISM
+    class Animal:
+    """Base class for animals with a move action."""
+    def move(self):
+        """Defines the general move action."""
+        print("This animal is moving in a general way.")
+
+class Dog(Animal):
+    """Represents a dog with a specific move action."""
+    def move(self):
+        """Defines how a dog moves."""
+        print("Running on four legs 🐕")
+
+class Bird(Animal):
+    """Represents a bird with a specific move action."""
+    def move(self):
+        """Defines how a bird moves."""
+        print("Flying through the air 🐦")
+
+class Fish(Animal):
+    """Represents a fish with a specific move action."""
+    def move(self):
+        """Defines how a fish moves."""
+        print("Swimming in the water 🐠")
+
+class Car:
+    """Represents a car with a specific move action."""
+    def move(self):
+        """Defines how a car moves."""
+        print("Driving on the road 🚗")
+
+class Airplane:
+    """Represents an airplane with a specific move action."""
+    def move(self):
+        """Defines how an airplane moves."""
+        print("Flying in the sky ✈️")
+
+def let_it_move(thing):
+    """Accepts an object and calls its move() method."""
+    thing.move()
+    
+my_dog = Dog()
+my_bird = Bird()
+my_fish = Fish()
+my_car = Car()
+my_airplane = Airplane()
+
+
+moving_objects = [my_dog, my_bird, my_fish, my_car, my_airplane]
+
+
+print("--- Polymorphism in Action ---")
+for obj in moving_objects:
+    let_it_move(obj)
+print("----------------------------")
